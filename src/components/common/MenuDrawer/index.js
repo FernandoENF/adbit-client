@@ -14,31 +14,34 @@ import './style.css'
 export default class index extends Component {
     render() {
         return (
-                <List>
-                    <Link to="dashboard">
-                        <ListItem button>
-                            <ListItemIcon>
-                                <Home />
-                            </ListItemIcon>
-                            <ListItemText primary="Visão Geral" />
-                        </ListItem>
-                    </Link>
-                    <Link to="meus-links">
-                        <ListItem button>
-                            <ListItemIcon>
-                                <LinkIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Meus Links" />
-                        </ListItem>
-                    </Link>
-                    <Divider />
+            <List>
+                <Link to="dashboard">
+                    <ListItem button>
+                        <ListItemIcon>
+                            <Home />
+                        </ListItemIcon>
+                        <ListItemText primary="Visão Geral" />
+                    </ListItem>
+                </Link>
+                <Link to="meus-links">
+                    <ListItem button>
+                        <ListItemIcon>
+                            <LinkIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Meus Links" />
+                    </ListItem>
+                </Link>
+                <Divider />
+                <Link to="sign-in">
+
                     <ListItem button>
                         <ListItemIcon>
                             <ExitToApp />
                         </ListItemIcon>
                         <ListItemText primary="Sair" />
                     </ListItem>
-                </List>
+                </Link>
+            </List>
 
         )
     }
