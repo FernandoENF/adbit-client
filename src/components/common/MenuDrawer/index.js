@@ -1,19 +1,43 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import {
+    List,
+    ListItem,
+    ListItemText,
+    ListItemIcon,
+    Divider
+} from '@material-ui/core';
+import { ExitToApp, Home } from '@material-ui/icons'
+import LinkIcon from '@material-ui/icons/Link';
 
 export default class index extends Component {
     render() {
         return (
-            <ul className="sidebar-nav">
-                <Link to="/dashboard" className="sidebar-link">
-                    <i className="align-middle" data-feather="sliders" />
-                    <span className="align-middle">Visão geral</span>
+            <List>
+                <Link to="dashboard">
+                    <ListItem button>
+                        <ListItemIcon>
+                            <Home />
+                        </ListItemIcon>
+                        <ListItemText primary="Visão Geral" />
+                    </ListItem>
                 </Link>
-                <Link to="/meus-links" className="sidebar-link">
-                    <i className="align-middle" data-feather="sliders" />
-                    <span className="align-middle">Meus Links</span>
+                <Link to="meus-links">
+                    <ListItem button>
+                        <ListItemIcon>
+                            <LinkIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Meus Links" />
+                    </ListItem>
                 </Link>
-            </ul>
+                <Divider />
+                <ListItem button>
+                    <ListItemIcon>
+                        <ExitToApp />
+                    </ListItemIcon>
+                    <ListItemText primary="Sair" />
+                </ListItem>
+            </List>
 
         )
     }
