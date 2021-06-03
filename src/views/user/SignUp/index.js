@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 
 
-const styles = withStyles(theme => ({
+const styles = theme => ({
     root: {
         height: '100vh',
     },
@@ -31,7 +31,7 @@ const styles = withStyles(theme => ({
     form: {
         width: '100%'
     }
-}));
+});
 
 
 
