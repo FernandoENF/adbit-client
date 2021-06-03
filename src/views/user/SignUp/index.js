@@ -13,13 +13,15 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 
 
-const styles = theme => ({
+const styles = withStyles(theme => ({
     root: {
         height: '100vh',
     },
     image: {
         backgroundImage: 'url(https://source.unsplash.com/random)',
         backgroundRepeat: 'no-repeat',
+        backgroundColor:
+            theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
         backgroundSize: 'cover',
         backgroundPosition: 'center',
     },
@@ -31,7 +33,7 @@ const styles = theme => ({
     form: {
         width: '100%'
     }
-});
+}));
 
 
 
@@ -131,7 +133,7 @@ class signUp extends React.Component {
             </Button>
                             <Grid container>
                                 <Grid item>
-                                    <Link href="#" variant="body2">
+                                    <Link href="/sign-in" variant="body2">
                                         {"Já possui conta? Faça login"}
                                     </Link>
                                 </Grid>

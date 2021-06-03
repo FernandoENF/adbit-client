@@ -58,9 +58,11 @@ export default class index extends Component {
                     <Button
                         variant="contained"
                         color="primary"
+                        onClick={this.encurtar}
                         endIcon={<SendIcon/>}
                     >
                         Encurtar
+                        
                     </Button>
                 </form>
                 <span>{this.state.encurtado}</span>
