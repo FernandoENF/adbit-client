@@ -1,9 +1,44 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Axios from 'axios'
-import { withRouter } from 'react-router-dom';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/styles';
 
 
-class signUp extends Component {
+const styles = theme => ({
+    root: {
+        height: '100vh',
+    },
+    image: {
+        backgroundImage: 'url(https://source.unsplash.com/random)',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+    },
+    paper: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    form: {
+        width: '100%'
+    }
+});
+
+
+
+
+
+class signUp extends React.Component {
+
     signUp = () => {
         Axios.post('https://adbit-app.herokuapp.com/api/register', {
             name: this.state.name,
@@ -30,62 +65,87 @@ class signUp extends Component {
             password: '',
         }
     }
-    render() {
-        return (
-            <main className="main d-flex w-100">
-                <div className="container d-flex flex-column">
-                    <div className="row h-100">
-                        <div className="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
-                            <div className="d-table-cell align-middle">
-                                <div className="text-center mt-4">
-                                    <h1 className="h2">Crie sua conta</h1>
-                                    <p className="lead">
-                                        Ganhe dinheiro encurtando links!
-            </p>
-                                </div>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <div className="m-sm-4">
-                                            <form onSubmit={this.handleSubmit}>
-                                                <div className="form-group">
-                                                    <label>Nome</label>
-                                                    <input className="form-control form-control-lg" type="text" name="name" placeholder="Coloque seu nome"
-                                                     onChange={e => this.setState({name: e.target.value})} />
-                                                </div>
-                                                <div className="form-group">
-                                                    <label>Site / Rede social</label>
-                                                    <input className="form-control form-control-lg" type="text" name="company" placeholder="Coloque de onde vem seu público"
-                                                     onChange={e => this.setState({company: e.target.value})} />
-                                                </div>
-                                                <div className="form-group">
-                                                    <label>Email</label>
-                                                    <input className="form-control form-control-lg" type="email" name="email" placeholder="Coloque seu email"
-                                                     onChange={e => this.setState({email: e.target.value})} />
-                                                </div>
-                                                <div className="form-group">
-                                                    <label>Senha</label>
-                                                    <input className="form-control form-control-lg" type="password" name="password" placeholder="Coloque sua senha"
-                                                     onChange={e => this.setState({password: e.target.value})} />
-                                                </div>
-                                                <div className="text-center mt-3">
-                                                    <button className="btn btn-lg btn-primary" onClick={this.signUp} >Registrar</button>
-                                                    
-                                                </div>
-                                                <small>
-                                                        <a href="/sign-in">Quero fazer login</a>
-                                                    </small>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
 
+    render() {
+        const { classes } = this.props;
+        return (
+
+            <Grid container component="main" className={classes.root}>
+                <CssBaseline />
+                <Grid item xs={false} sm={4} md={7} className={classes.image} />
+                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                    <div className={classes.paper}>
+                        <Avatar className={classes.avatar}>
+                            <LockOutlinedIcon />
+                        </Avatar>
+                        <Typography component="h1" variant="h5">
+                            Crie sua conta gratuitamente
+          </Typography>
+                        <form className={classes.form} onSubmit={this.handleSubmit} noValidate>
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="nome"
+                                label="Primeiro nome"
+                                name="nome"
+                                autoComplete="nome"
+                                autoFocus
+                                onChange={e => this.setState({name: e.target.value})}
+                            />
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Seu email"
+                                name="email"
+                                autoComplete="email"
+                                autoFocus
+                                onChange={e => this.setState({email: e.target.value})}
+                            />
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="senha"
+                                label="Sua senha"
+                                type="password"
+                                id="senha"
+                                autoComplete="current-password"
+                                onChange={e => this.setState({password: e.target.value})} 
+                                
+                            />
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                className={classes.submit}
+                                onClick={this.signUp} 
+                            >
+                                Criar conta
+            </Button>
+                            <Grid container>
+                                <Grid item>
+                                    <Link href="#" variant="body2">
+                                        {"Já possui conta? Faça login"}
+                                    </Link>
+                                </Grid>
+                            </Grid>
+                        </form>
+                    </div>
+                </Grid>
+            </Grid>
         )
     }
 }
 
-export default withRouter(signUp);
+signUp.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(signUp);
