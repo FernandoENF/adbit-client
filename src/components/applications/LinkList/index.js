@@ -7,11 +7,14 @@ export default function LinkItem(props) {
   var host = process.env.REACT_APP_ROOT_PATH
   var uri = props.uri
   var link = host + '/' + uri
+
+
+  
   return (
     <tr>
       <td>{props.id}</td>
       <td>
-        <a href={'http://' + link} target="_blank">{link}</a>
+        <a href={'http://' + link} target="_blank" rel="noreferrer">{link}</a>
         <CopyToClipboard text={'http://' + link}>
           <button type="button" className="btn btn-primary ml-3">Copiar</button>
         </CopyToClipboard>

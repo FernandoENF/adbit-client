@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
-import {Button, Icon} from '@material-ui/core';
+import {Button} from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import SendIcon from '@material-ui/icons/Send';
 
 
 
 
+var host = process.env.REACT_APP_ROOT_PATH
 export default class index extends Component {
+
     encurtar = () => {
         Axios.post('https://adbit-app.herokuapp.com/api/links/novoLink', {
             url: this.state.link,
@@ -32,7 +34,7 @@ export default class index extends Component {
 
         this.state = {
             link: '',
-            encurtado: 'link.com/encurtado',
+            encurtado: host + '/encurtado',
         }
     }
 
