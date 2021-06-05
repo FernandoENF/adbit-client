@@ -48,7 +48,7 @@ export default class index extends Component {
                                 </thead>
                                 <tbody>
                                     {this.state.items.map((item, index) => (
-                                    <LinkItem key={index} id ={index+1} uri={item.uri} data={item.data}></LinkItem>
+                                    <LinkItem key={index} id ={index+1} slug={item.slug} data={item.data}></LinkItem>
                                     ))}
                                 </tbody>
                             </table>

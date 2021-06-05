@@ -9,11 +9,11 @@ import Axios from 'axios';
 
 
 function Child() {
-    let { uri } = useParams();
-    console.log(uri)
+    let { slug } = useParams();
+    console.log(slug)
     const redirect = () => {
         Axios.post('https://adbit-app.herokuapp.com/api/links/redirecionar', {
-            uri: uri,
+            slug: slug,
         }).then((response) => {
             if (response.data.error) {
                 window.location.replace("./404")
@@ -31,7 +31,7 @@ export default function Params() {
     return (
         <Router>
             <Switch>
-                <Route path="/:uri" children={<Child />} />
+                <Route path="/:slug" children={<Child />} />
             </Switch>
         </Router>
 

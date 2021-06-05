@@ -5,8 +5,8 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 export default function LinkItem(props) {
   var ndata = moment(props.data).format('DD-MM-YYYY')
   var host = process.env.REACT_APP_ROOT_PATH
-  var uri = props.uri
-  var link = host + '/' + uri
+  var slug = props.slug
+  var link = host + '/' + slug
 
 
   
