@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Axios from 'axios'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -35,11 +35,13 @@ const styles = theme => ({
 
 
 
+export default function signUp () {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [company, setCompany] = useState("");
 
-
-class signUp extends React.Component {
-
-    signUp = () => {
+    const signUpFunction = () => {
         Axios.post('https://adbit-app.herokuapp.com/api/register', {
             name: this.state.name,
             email: this.state.email,
@@ -51,23 +53,11 @@ class signUp extends React.Component {
         });
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
+    const handleSubmit = e => {
+        e.preventDefault();
     }
 
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            name: '',
-            email: '',
-            company: '',
-            password: '',
-        }
-    }
-
-    render() {
-        const { classes } = this.props;
+    const { classes } = this.props;
         return (
 
             <Grid container component="main" className={classes.root}>
@@ -81,7 +71,7 @@ class signUp extends React.Component {
                         <Typography component="h1" variant="h5">
                             Crie sua conta gratuitamente
           </Typography>
-                        <form className={classes.form} onSubmit={this.handleSubmit} noValidate>
+                        <form className={classes.form} onSubmit={(e) => handleSubmit(e)} noValidate>
                             <TextField
                                 variant="outlined"
                                 margin="normal"
@@ -92,7 +82,7 @@ class signUp extends React.Component {
                                 name="nome"
                                 autoComplete="nome"
                                 autoFocus
-                                onChange={e => this.setState({name: e.target.value})}
+                                onChange={(e) => setName(e.target.value)}
                             />
                             <TextField
                                 variant="outlined"
@@ -104,7 +94,7 @@ class signUp extends React.Component {
                                 name="email"
                                 autoComplete="email"
                                 autoFocus
-                                onChange={e => this.setState({email: e.target.value})}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                             <TextField
                                 variant="outlined"
@@ -116,7 +106,7 @@ class signUp extends React.Component {
                                 type="password"
                                 id="senha"
                                 autoComplete="current-password"
-                                onChange={e => this.setState({password: e.target.value})} 
+                                onChange={(e) => setPassword(e.target.value)} 
                                 
                             />
                             <Button
@@ -125,7 +115,7 @@ class signUp extends React.Component {
                                 variant="contained"
                                 color="primary"
                                 className={classes.submit}
-                                onClick={this.signUp} 
+                                onClick={signUpFunction} 
                             >
                                 Criar conta
             </Button>
@@ -140,10 +130,8 @@ class signUp extends React.Component {
                     </div>
                 </Grid>
             </Grid>
-        )
-    }
-}
-
+        );
+        
 signUp.propTypes = {
     classes: PropTypes.object.isRequired,
 };
