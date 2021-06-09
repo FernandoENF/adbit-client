@@ -1,9 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Button, Grid, Container } from '@material-ui/core'
+import { AppBar, Toolbar, Typography, Button, Grid, Container, CardMedia } from '@material-ui/core'
 import GradientButton from 'react-linear-gradient-button';
 import Card from '../../../components/pages/Cards'
 import Desenho1 from '../../../assets/img/desenho1.png'
+import IllustracaoStatitics from '../../../assets/img/Statistics.png'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,16 +22,17 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         display: 'flex',
     },
+    ilustracaoBanner:{
+        height: '300px',
+    },
     banner: {
-        backgroundImage: 'url(https://d2iy3gu97pxoua.cloudfront.net/solutions/assets/images/conversational-ai-bg.jpg)',
+        backgroundImage: 'url(https://1gzigc2wpsxy2gfa3t38i362-wpengine.netdna-ssl.com/wp-content/uploads/2018/03/blink-texture-bg.png)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         height: '600px',
     },
     banner2: {
-        backgroundImage: 'url(https://1gzigc2wpsxy2gfa3t38i362-wpengine.netdna-ssl.com/wp-content/uploads/2018/03/blink-texture-bg.png)',
-        backgroundRepeat: 'repeat',
-        objectFit: 'cover',
+        backgroundColor: '#000C66',
         minHeight: '600px',
     },
     textoBanner: {
@@ -67,7 +69,7 @@ export default function Home() {
     return (
         <div className={classes.root}>
             {/* Inicio do MENU */}
-            <AppBar position="static" elevation={0} color='transparent'>
+            <AppBar position="static" elevation={0} color='transparent' position='fixed '>
                 <Container>
                     <Toolbar>
                         <Typography variant="h6" className={classes.title}>
@@ -81,7 +83,7 @@ export default function Home() {
             {/* Fim do MENU */}
             {/* Inicio BANNER */}
             <div className={classes.banner}>
-                <Container  style={{paddingTop:'130px'}}>
+                <Container style={{ paddingTop: '130px' }}>
                     <Grid container spacing={0}>
                         <Grid item xs={12} sm={6}>
                             <h1 className={classes.textoBanner}>
@@ -97,6 +99,9 @@ export default function Home() {
                                     Criar conta Gratuitamente
                                 </GradientButton>
                             </a>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <div className={classes.ilustracaoBanner}/>
                         </Grid>
                     </Grid>
                 </Container>
@@ -144,7 +149,7 @@ export default function Home() {
 
             <div className={classes.banner2}>
                 <Container>
-                    <Grid container spacing={0}  style={{paddingTop:'130px'}}>
+                    <Grid container spacing={0} style={{ paddingTop: '130px' }}>
                         <Grid item xs={12} md={6} sm={6}>
                             <div className={classes.centralizar}>
                                 <img src={Desenho1} alt="ilustracao 1" className={classes.ilustracoes} />
