@@ -1,53 +1,172 @@
-import React, { Component } from 'react'
-import ImgBanner from '../../../assets/img/mulher-com-dinheiro.png'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { AppBar, Toolbar, Typography, Button, Grid, Container } from '@material-ui/core'
+import GradientButton from 'react-linear-gradient-button';
+import Card from '../../../components/pages/Cards'
+import Desenho1 from '../../../assets/img/desenho1.png'
 
-export default class index extends Component {
-    render() {
-        return (
-            <div>
-                <nav className="navbar navbar-expand navbar-dark navbar-landing">
-                    <a className="navbar-brand" href="#">
-                        Adbit
-                    </a>
-                    <ul className="navbar-nav ml-auto">
-                        <li className="nav-item active d-none d-md-inline-block">
-                            <a className="nav-link" href="/">Como funciona</a>
-                        </li>
-                        <li className="nav-item active">
-                            <a className="nav-link" href="/">Perguntas frequentes</a>
-                        </li>
-                        <li className="nav-item active d-none d-md-inline-block">
-                            <a className="nav-link" href="/">Contato</a>
-                        </li>
-                    </ul>
-                    <a href="/sign-in" className="btn btn-primary my-2 my-sm-0 ml-2">Entrar / Registrar</a>
-                </nav>
-                <section className="landing-intro pt-5">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-11 col-lg-9 col-xl-12 mx-auto">
-                                <div className="row">
-                                    <div className="col-xl-5">
-                                        <i title="AppStack" data-feather="box" className="landing-intro-brand" />
-                                        <h1 className="text-white my-4">O Adbit é um Encurtador de links que possibilita a monetização  através de anúncios nos links encurtados</h1>
-                                        <p className="text-muted lead">Ganhe dinheiro encurtando links com nossa de rede de patrocinadores premium.</p>
-                                        <div className="my-4">
-                                            <a target="" href="/sign-up" className="btn btn-light btn-lg mr-1">Criar conta grátis</a>
-                                            <a href="/"  className="btn btn-outline-light btn-lg">Saber mais</a>
-                                        </div>
-                                    </div>
-                                    <div className="col-xl-6 ml-auto d-none d-xl-block">
-                                        <div className="landing-intro-img">
-                                            <img src={ImgBanner} style={{maxWidth: "50%", height: "auto"}} className="landing-intro-img" />
-                                        </div>
-                                    </div>
-                                </div>
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    title: {
+        flexGrow: 1,
+    },
+    centralizar: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        display: 'flex',
+    },
+    banner: {
+        backgroundImage: 'url(https://d2iy3gu97pxoua.cloudfront.net/solutions/assets/images/conversational-ai-bg.jpg)',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        height: '600px',
+    },
+    banner2: {
+        backgroundImage: 'url(https://1gzigc2wpsxy2gfa3t38i362-wpengine.netdna-ssl.com/wp-content/uploads/2018/03/blink-texture-bg.png)',
+        backgroundRepeat: 'repeat',
+        objectFit: 'cover',
+        minHeight: '600px',
+    },
+    textoBanner: {
+        fontSize: '4em',
+        fontWeight: '600',
+        lineHeight: '1.2',
+        color: 'white',
+    },
+    botaoSignUp: {
+        backgroundColor: 'black',
+
+    },
+    paper: {
+        padding: '20px',
+    },
+    iconeGrande: {
+        width: theme.spacing(7),
+        height: theme.spacing(7),
+    },
+    apresentacao: {
+        paddingTop: '70px',
+        paddingBottom: '70px',
+
+    },
+    ilustracoes: {
+        maxHeight: '400px',
+        width: 'auto',
+        borderRadius: '120px 20px 120px 20px'
+    }
+}));
+
+export default function Home() {
+    const classes = useStyles();
+    return (
+        <div className={classes.root}>
+            {/* Inicio do MENU */}
+            <AppBar position="static" elevation={0} color='transparent'>
+                <Container>
+                    <Toolbar>
+                        <Typography variant="h6" className={classes.title}>
+                            Adbit logo
+                        </Typography>
+                        <Button color="inherit" href='/sign-in'>Login</Button>
+                        <Button color="inherit" href='/sign-up'>Registrar</Button>
+                    </Toolbar>
+                </Container>
+            </AppBar>
+            {/* Fim do MENU */}
+            {/* Inicio BANNER */}
+            <div className={classes.banner}>
+                <Container  style={{paddingTop:'130px'}}>
+                    <Grid container spacing={0}>
+                        <Grid item xs={12} sm={6}>
+                            <h1 className={classes.textoBanner}>
+                                Encurte <br />
+                                Compartilhe <br />
+                                Monitore
+                            </h1>
+                            <a href="/sign-up">
+                                <GradientButton
+                                    padding='15'
+                                    theme="Amethyst"
+                                >
+                                    Criar conta Gratuitamente
+                                </GradientButton>
+                            </a>
+                        </Grid>
+                    </Grid>
+                </Container>
+            </div>
+            {/* Fim BANNER */}
+            {/* inicio APRESENTACAO */}
+            <Container className={classes.apresentacao}>
+                <Grid container spacing={3}>
+                    <Grid item xs={6} sm={3}>
+                        <Card
+                            titulo="LINKS SEGUROS"
+                            conteudo="Todas as suas URLs encurtadas são criptografas por padrão,
+                        tornandos as mais seguras através de certificados de segurança (HTTPS)
+                        consolidados no mercado."
+                        />
+                    </Grid>
+                    <Grid item xs={6} sm={3}>
+                        <Card
+                            titulo="LINKS SEGUROS"
+                            conteudo="Todas as suas URLs encurtadas são criptografas por padrão,
+                        tornandos as mais seguras através de certificados de segurança (HTTPS)
+                        consolidados no mercado."
+                        />
+                    </Grid>
+                    <Grid item xs={6} sm={3} >
+                        <Card
+                            titulo="LINKS SEGUROS"
+                            conteudo="Todas as suas URLs encurtadas são criptografas por padrão,
+                        tornandos as mais seguras através de certificados de segurança (HTTPS)
+                        consolidados no mercado."
+                        />
+                    </Grid>
+
+                    <Grid item xs={6} sm={3} >
+                        <Card
+                            titulo="LINKS SEGUROS"
+                            conteudo="Todas as suas URLs encurtadas são criptografas por padrão,
+                        tornandos as mais seguras através de certificados de segurança (HTTPS)
+                        consolidados no mercado."
+                        />
+                    </Grid>
+                </Grid>
+            </Container>
+            {/* fim APRESENTACAO */}
+
+            <div className={classes.banner2}>
+                <Container>
+                    <Grid container spacing={0}  style={{paddingTop:'130px'}}>
+                        <Grid item xs={12} md={6} sm={6}>
+                            <div className={classes.centralizar}>
+                                <img src={Desenho1} alt="ilustracao 1" className={classes.ilustracoes} />
                             </div>
-                        </div>
-                    </div>
-                </section>
+                        </Grid>
+                        <Grid item xs={12} md={6} sm={6}>
+                            <h1 className={classes.textoBanner}>
+                                Pare de perder tempo com encurtadores de URL genéricos
+                                </h1>
+                            <a href="/sign-up">
+                                <GradientButton
+                                    padding='15'
+                                    theme="Amethyst"
+                                >
+                                    Criar conta Gratuitamente
+                                </GradientButton>
+                            </a>
+                        </Grid>
+                    </Grid>
+                </Container>
             </div>
 
-        )
-    }
-}
+        </div>
+    )
+};
