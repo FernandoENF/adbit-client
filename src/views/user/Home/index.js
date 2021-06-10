@@ -4,7 +4,6 @@ import { AppBar, Toolbar, Typography, Button, Grid, Container, Hidden } from '@m
 import GradientButton from 'react-linear-gradient-button';
 import Card from '../../../components/pages/Cards'
 
-{/*https://www.canva.com/colors/color-palettes/the-deep-blue/*/ }
 
 
 const useStyles = makeStyles((theme) => ({
