@@ -172,7 +172,7 @@ export default function HorizontalLinearStepper() {
                                 color="primary"
                                 onClick={handleNext}
                                 className={classes.button}
-                                onClick={this.encurtar}
+                                onClick={encurtar}
                             >
                                 {activeStep === steps.length - 1 ? 'Finalizar' : 'Proximo'}
                             </Button>
