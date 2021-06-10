@@ -1,10 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Button, Grid, Container, CardMedia } from '@material-ui/core'
+import { AppBar, Toolbar, Typography, Button, Grid, Container, Hidden } from '@material-ui/core'
 import GradientButton from 'react-linear-gradient-button';
 import Card from '../../../components/pages/Cards'
-import Desenho1 from '../../../assets/img/desenho1.png'
-import IllustracaoStatitics from '../../../assets/img/Statistics.png'
+
+{/*https://www.canva.com/colors/color-palettes/the-deep-blue/*/ }
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,8 +22,13 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         display: 'flex',
     },
-    ilustracaoBanner:{
-        height: '300px',
+    ilustracaoBanner: {
+        backgroundImage: 'url(./img/Statistics.png)',
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        width: '100%',
+        height: '400px',
+
     },
     banner: {
         backgroundImage: 'url(https://1gzigc2wpsxy2gfa3t38i362-wpengine.netdna-ssl.com/wp-content/uploads/2018/03/blink-texture-bg.png)',
@@ -58,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
 
     },
     ilustracoes: {
-        maxHeight: '400px',
+        maxHeight: '350px',
         width: 'auto',
         borderRadius: '120px 20px 120px 20px'
     }
@@ -69,7 +74,7 @@ export default function Home() {
     return (
         <div className={classes.root}>
             {/* Inicio do MENU */}
-            <AppBar position="static" elevation={0} color='transparent' position='fixed '>
+            <AppBar position="static" elevation={0} color='transparent'>
                 <Container>
                     <Toolbar>
                         <Typography variant="h6" className={classes.title}>
@@ -100,9 +105,11 @@ export default function Home() {
                                 </GradientButton>
                             </a>
                         </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <div className={classes.ilustracaoBanner}/>
-                        </Grid>
+                        <Hidden smDown>
+                            <Grid item xs={12} sm={6}>
+                                <div className={classes.ilustracaoBanner} />
+                            </Grid>
+                        </Hidden>
                     </Grid>
                 </Container>
             </div>
@@ -110,7 +117,7 @@ export default function Home() {
             {/* inicio APRESENTACAO */}
             <Container className={classes.apresentacao}>
                 <Grid container spacing={3}>
-                    <Grid item xs={6} sm={3}>
+                    <Grid item xs={12} sm={6} md={3}>
                         <Card
                             titulo="LINKS SEGUROS"
                             conteudo="Todas as suas URLs encurtadas são criptografas por padrão,
@@ -118,7 +125,7 @@ export default function Home() {
                         consolidados no mercado."
                         />
                     </Grid>
-                    <Grid item xs={6} sm={3}>
+                    <Grid item xs={12} sm={6} md={3}>
                         <Card
                             titulo="LINKS SEGUROS"
                             conteudo="Todas as suas URLs encurtadas são criptografas por padrão,
@@ -126,7 +133,7 @@ export default function Home() {
                         consolidados no mercado."
                         />
                     </Grid>
-                    <Grid item xs={6} sm={3} >
+                    <Grid item xs={12} sm={6} md={3} >
                         <Card
                             titulo="LINKS SEGUROS"
                             conteudo="Todas as suas URLs encurtadas são criptografas por padrão,
@@ -135,7 +142,7 @@ export default function Home() {
                         />
                     </Grid>
 
-                    <Grid item xs={6} sm={3} >
+                    <Grid item xs={12} sm={6} md={3} >
                         <Card
                             titulo="LINKS SEGUROS"
                             conteudo="Todas as suas URLs encurtadas são criptografas por padrão,
@@ -150,12 +157,12 @@ export default function Home() {
             <div className={classes.banner2}>
                 <Container>
                     <Grid container spacing={0} style={{ paddingTop: '130px' }}>
-                        <Grid item xs={12} md={6} sm={6}>
+                        <Grid item xs={12} sm={12} md={6}>
                             <div className={classes.centralizar}>
-                                <img src={Desenho1} alt="ilustracao 1" className={classes.ilustracoes} />
+                                <img src="./img/desenho1.png" alt="ilustracao 1" className={classes.ilustracoes} />
                             </div>
                         </Grid>
-                        <Grid item xs={12} md={6} sm={6}>
+                        <Grid item xs={12} sm={12} md={6}>
                             <h1 className={classes.textoBanner}>
                                 Pare de perder tempo com encurtadores de URL genéricos
                                 </h1>
