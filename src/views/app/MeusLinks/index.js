@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -13,6 +14,20 @@ import Layout from '../../../layout/dashboard'
 
 
 export default function CollapsibleTable() {
+    const [items, setItems] = useState([]);
+    const listLinks = () => {
+        Axios.get('https://adbit-app.herokuapp.com/api/links',{
+            headers: {
+                adbitAcessToken: localStorage.getItem('token'),
+            }
+        }).then((response) => {
+            console.log(response);
+            setItems(response.data)
+        })}
+    useEffect(() => {
+        listLinks()
+      });
+
     return (
         <Layout>
             <TableContainer component={Paper}>
@@ -28,8 +43,9 @@ export default function CollapsibleTable() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {/* itens da tabela aqui */}
-                        <LinkItem />
+                        {items.map((item, index) => (
+                        <LinkItem key={index} id ={index+1} slug={item.slug} data={item.data}></LinkItem>
+                        ))}
                     </TableBody>
                 </Table>
             </TableContainer>
