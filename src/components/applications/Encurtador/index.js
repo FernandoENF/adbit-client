@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
-import {Button} from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import SendIcon from '@material-ui/icons/Send';
-
 
 
 
@@ -42,30 +41,31 @@ export default class index extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <TextField
-                        id="standard-full-width"
-                        label="Encurtar link"
-                        style={{ margin: 8 }}
-                        helperText="Cole aqui o seu link"
-                        fullWidth
-                        margin="normal"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        onChange={e => this.setState({ link: e.target.value })}
-                    />
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={this.encurtar}
-                        endIcon={<SendIcon/>}
-                    >
-                        Encurtar
-                        
-                    </Button>
-                </form>
+                <Grid container spacing={3}>
+                    <Grid lg={12}>
+                        <form onSubmit={this.handleSubmit}>
+                            <TextField
+                                label="Encurtar link"
+                                style={{ margin: 8, width: '100%' }}
+                                helperText="Cole aqui o seu link"
+                                margin="normal"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                onChange={e => this.setState({ link: e.target.value })}
+                            />
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={this.encurtar}
+                                endIcon={<SendIcon />}
+                            >
+                                Encurtar
+                            </Button>
+                        </form>
+                    </Grid>
                 <span>{this.state.encurtado}</span>
+                </Grid>
             </div>
         )
     }
