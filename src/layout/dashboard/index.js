@@ -94,6 +94,7 @@ export default function MiniDrawer(props) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        elevation={0}
         color='inherit'
         position="fixed"
         className={clsx(classes.appBar, {
@@ -136,7 +137,7 @@ export default function MiniDrawer(props) {
           </IconButton>
         </div>
         <Divider />
-        <MenuDrawer/>
+        <MenuDrawer />
         <Divider />
       </Drawer>
       <main className={classes.content}>

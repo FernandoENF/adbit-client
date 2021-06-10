@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import Axios from 'axios'
 import Avatar from '@material-ui/core/Avatar';
@@ -11,6 +12,103 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+import Dialog from '@material-ui/core/Dialog';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio from '@material-ui/core/Radio';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+
+
+
+const options = [
+    'Instagram',
+    'Facebook',
+    'Twitter',
+    'Linkedin',
+    'Email Marketing',
+    'Site/Blog',
+    'Outros',
+    'Nenhuma',
+];
+
+function ConfirmationDialogRaw(props) {
+    const { onClose, value: valueProp, open, ...other } = props;
+    const [value, setValue] = React.useState(valueProp);
+    const radioGroupRef = React.useRef(null);
+
+    React.useEffect(() => {
+        if (!open) {
+            setValue(valueProp);
+        }
+    }, [valueProp, open]);
+
+    const handleEntering = () => {
+        if (radioGroupRef.current != null) {
+            radioGroupRef.current.focus();
+        }
+    };
+
+    const handleCancel = () => {
+        onClose();
+    };
+
+    const handleOk = () => {
+        onClose(value);
+    };
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    };
+
+    return (
+        <Dialog
+            disableBackdropClick
+            disableEscapeKeyDown
+            maxWidth="xs"
+            onEntering={handleEntering}
+            aria-labelledby="confirmation-dialog-title"
+            open={open}
+            {...other}
+        >
+            <DialogTitle id="confirmation-dialog-title">De onde vem os cliques?</DialogTitle>
+            <DialogContent dividers>
+                <RadioGroup
+                    ref={radioGroupRef}
+                    aria-label="ringtone"
+                    name="ringtone"
+                    value={value}
+                    onChange={handleChange}
+                >
+                    {options.map((option) => (
+                        <FormControlLabel value={option} key={option} control={<Radio />} label={option} />
+                    ))}
+                </RadioGroup>
+            </DialogContent>
+            <DialogActions>
+                <Button autoFocus onClick={handleCancel} color="primary">
+                    Cancel
+          </Button>
+                <Button onClick={handleOk} color="primary">
+                    Ok
+          </Button>
+            </DialogActions>
+        </Dialog>
+    );
+}
+
+ConfirmationDialogRaw.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    open: PropTypes.bool.isRequired,
+    value: PropTypes.string.isRequired,
+};
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -69,6 +167,24 @@ export default function SignUpSide() {
         e.preventDefault();
     };
 
+    const [open, setOpen] = React.useState(false);
+    const [value, setValue] = React.useState('Selecionar');
+
+    const handleClickListItem = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (newValue) => {
+        setOpen(false);
+
+        if (newValue) {
+            setValue(newValue);
+        }
+    };
+
+
+
+
     return (
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
@@ -118,6 +234,31 @@ export default function SignUpSide() {
                             autoComplete="current-password"
                             onChange={(e) => setPassword(e.target.value)}
                         />
+
+                        <List component="div" role="list">
+                            <ListItem
+                                button
+                                divider
+                                aria-haspopup="true"
+                                aria-controls="ringtone-menu"
+                                aria-label="Aonde você compartilhará os links"
+                                onClick={handleClickListItem}
+                                role="listitem"
+                            >
+                                <ListItemText primary="Qual sua principal fonte de cliques?" onChange={(e) => setCompany(e.target.value)} secondary={value} />
+                            </ListItem>
+                            <ConfirmationDialogRaw
+                                classes={{
+                                    paper: classes.paper,
+                                }}
+                                id="ringtone-menu"
+                                keepMounted
+                                open={open}
+                                onClose={handleClose}
+                                value={value}
+                            />
+                        </List>
+
                         <Button
                             type="submit"
                             fullWidth
@@ -127,7 +268,7 @@ export default function SignUpSide() {
                             onClick={signUp}
                         >
                             Criar conta
-            </Button>
+                        </Button>
                         <Grid container>
                             <Grid item>
                                 <Link href="/sign-in" variant="body2">
