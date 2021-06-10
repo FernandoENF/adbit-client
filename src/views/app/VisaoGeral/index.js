@@ -12,13 +12,13 @@ class VisaoGeral extends Component {
             <Layout>
                 <Encurtador />
                 <Grid container spacing={3}>
-                    <Grid sm={12} md={4} >
+                    <Grid xs={12} sm={12} md={4} >
                         <Grafico />
                     </Grid>
-                    <Grid sm={12} md={4} >
+                    <Grid xs={12} sm={12} md={4} >
                         <Grafico />
                     </Grid>
-                    <Grid sm={12} md={4} >
+                    <Grid xs={12} sm={12} md={4} >
                         <Grafico />
                     </Grid>
                 </Grid>
