@@ -22,7 +22,7 @@ export default function CollapsibleTable() {
             }
         }).then((response) => {
             console.log(response);
-            setItems(response.data)
+            setItems(response.data.reverse())
         })}
     useEffect(() => {
         listLinks()
