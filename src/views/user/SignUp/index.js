@@ -179,6 +179,7 @@ export default function SignUpSide() {
 
         if (newValue) {
             setValue(newValue);
+            setCompany(newValue);
         }
     };
 
@@ -245,7 +246,7 @@ export default function SignUpSide() {
                                 onClick={handleClickListItem}
                                 role="listitem"
                             >
-                                <ListItemText primary="Qual sua principal fonte de cliques?" onChange={(e) => setCompany(e.target.value)} secondary={value} />
+                                <ListItemText primary="Qual sua principal fonte de cliques?" secondary={value} />
                             </ListItem>
                             <ConfirmationDialogRaw
                                 classes={{
