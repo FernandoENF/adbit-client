@@ -1,17 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
+import { Stepper, Typography, TextField, FormControlLabel, Checkbox } from '@material-ui/core/';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Axios from 'axios'
-
-
-
-var host = process.env.REACT_APP_ROOT_PATH
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -27,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-    return ['Encurtar Link', 'Configurações adicionais', 'Finalizar'];
+    return ['Encurtar Link', 'Personalização', 'Finalizar'];
 }
 
 function getStepContent(step) {
@@ -35,44 +27,52 @@ function getStepContent(step) {
         case 0:
             return (
                 <TextField
-                    label="Encurtar link"
+                    label="Encurtar link longo"
                     style={{ margin: 8, width: '100%' }}
                     helperText="Cole aqui o seu link"
                     margin="normal"
-                    InputLabelProps={{ shrink: true, }}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
                     onChange={e => this.setState({ link: e.target.value })}
                 />);
         case 1:
-            return 'Quais alterações?';
+            return (
+                <TextField
+                    label="Personalize o seu link"
+                    style={{ margin: 8, width: '100%' }}
+                    helperText="Deixe o link do jeito que precisa"
+                    margin="normal"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    onChange={e => this.setState({ link: e.target.value })}
+                />
+            );
         case 2:
             return (
-                <span>{this.state.encurtado}</span>
+                <div>
+                    <FormControlLabel
+                        value="rastrear"
+                        control={<Checkbox color="primary" />}
+                        label="Rastrear"
+                        checked='true'
+                        labelPlacement="end"
+                    />
+                    <FormControlLabel
+                        value="monetizar"
+                        control={<Checkbox color="primary" />}
+                        label="Monetizar"
+                        labelPlacement="end"
+                    />
+                </div>
             );
         default:
-            return 'Algo deu errado';
+            return 'Unknown step';
     }
 }
 
 export default function HorizontalLinearStepper() {
-    const encurtar = () => {
-        Axios.post('https://adbit-app.herokuapp.com/api/links/novoLink', {
-            url: this.state.link,
-        },
-            {
-                headers: {
-                    adbitAcessToken: localStorage.getItem('token'),
-                }
-            }).then((response) => {
-                this.setState({
-                    encurtado: process.env.REACT_APP_ROOT_PATH + '/' + response.data.message
-                })
-            });
-    }
-
-    const handleSubmit = e => {
-        e.preventDefault();
-    };
-
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
@@ -143,11 +143,11 @@ export default function HorizontalLinearStepper() {
                 {activeStep === steps.length ? (
                     <div>
                         <Typography className={classes.instructions}>
-                            Todas as etapas concluídas - você terminou
-            </Typography>
+                            Link criado com Sucesso
+                        </Typography>
                         <Button onClick={handleReset} className={classes.button}>
                             Criar outro link
-            </Button>
+                        </Button>
                     </div>
                 ) : (
                     <div>
@@ -155,7 +155,7 @@ export default function HorizontalLinearStepper() {
                         <div>
                             <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                                 Voltar
-              </Button>
+                            </Button>
                             {isStepOptional(activeStep) && (
                                 <Button
                                     variant="contained"
@@ -172,9 +172,8 @@ export default function HorizontalLinearStepper() {
                                 color="primary"
                                 onClick={handleNext}
                                 className={classes.button}
-                                onClick={encurtar}
                             >
-                                {activeStep === steps.length - 1 ? 'Finalizar' : 'Proximo'}
+                                {activeStep === steps.length - 1 ? 'Finalizar' : 'Próximo'}
                             </Button>
                         </div>
                     </div>
