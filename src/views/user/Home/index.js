@@ -118,7 +118,7 @@ export default function Home() {
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} md={3}>
                         <Card
-                            titulo="LINKS SEGUROS"
+                            titulo="Links seguros"
                             conteudo="Todas as suas URLs encurtadas são criptografas por padrão,
                         tornandos as mais seguras através de certificados de segurança (HTTPS)
                         consolidados no mercado."
@@ -126,27 +126,26 @@ export default function Home() {
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
                         <Card
-                            titulo="LINKS SEGUROS"
-                            conteudo="Todas as suas URLs encurtadas são criptografas por padrão,
-                        tornandos as mais seguras através de certificados de segurança (HTTPS)
-                        consolidados no mercado."
+                            titulo="Estatísticas"
+                            conteudo="Veja o total de cliques da sua url. Monitore seus links acompanhe 
+                            as estatísticas para seus negócios e projetos saiba a quantidade de acessos 
+                            da sua URL através do nosso poderoso painel totalmente em português e fácil de usar."
                         />
                     </Grid>
                     <Grid item xs={12} sm={6} md={3} >
                         <Card
-                            titulo="LINKS SEGUROS"
-                            conteudo="Todas as suas URLs encurtadas são criptografas por padrão,
-                        tornandos as mais seguras através de certificados de segurança (HTTPS)
-                        consolidados no mercado."
+                            titulo="Confiável"
+                            conteudo="Somos um serviço de encurtamento de links que utiliza otimas tecnologias
+                            para oferecer um serviço de qualidade"
                         />
                     </Grid>
 
                     <Grid item xs={12} sm={6} md={3} >
                         <Card
-                            titulo="LINKS SEGUROS"
-                            conteudo="Todas as suas URLs encurtadas são criptografas por padrão,
-                        tornandos as mais seguras através de certificados de segurança (HTTPS)
-                        consolidados no mercado."
+                            titulo="Feito para simplificar"
+                            conteudo="Tendo como objetivo principal encurtar links, nós focamos na melhor 
+                            experiência possível para que você consiga encurtá-los da maneira mais simples 
+                            e rápida possível."
                         />
                     </Grid>
                 </Grid>
