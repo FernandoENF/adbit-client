@@ -23,7 +23,7 @@ const useRowStyles = makeStyles({
 });
 
 export default function LinkItem(props) {
-  var ndata = moment(props.data).format('DD-MM-YYYY')
+  var ndata = moment(props.data).utc().format('DD-MM-YYYY')
   var host = process.env.REACT_APP_ROOT_PATH
   var slug = props.slug
   var link = host + '/' + slug
