@@ -1,4 +1,5 @@
 import React from 'react';
+import Axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import { Stepper, Typography, TextField, FormControlLabel, Checkbox } from '@material-ui/core/';
 import Step from '@material-ui/core/Step';
@@ -22,7 +23,7 @@ function getSteps() {
     return ['Encurtar Link', 'Personalização', 'Finalizar'];
 }
 
-function getStepContent(step) {
+function getStepContent(step, setLink, setSlug) {
     switch (step) {
         case 0:
             return (
@@ -34,7 +35,7 @@ function getStepContent(step) {
                     InputLabelProps={{
                         shrink: true,
                     }}
-                    onChange={e => this.setState({ link: e.target.value })}
+                    onChange={e => setLink(e.target.value)}
                 />);
         case 1:
             return (
@@ -46,7 +47,7 @@ function getStepContent(step) {
                     InputLabelProps={{
                         shrink: true,
                     }}
-                    onChange={e => this.setState({ link: e.target.value })}
+                    onChange={e => setSlug(e.target.value)}
                 />
             );
         case 2:
@@ -76,7 +77,20 @@ export default function HorizontalLinearStepper() {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
+    const [link, setLink] = React.useState('')
+    const [slug, setSlug] = React.useState('');
     const steps = getSteps();
+
+    const shortenLink = () => {
+        Axios.post('https://adbit-app.herokuapp.com/api/links/novoLink', {
+            url: link,
+        },
+            {
+                headers: {
+                    adbitAcessToken: localStorage.getItem('token'),
+                }
+            });
+    };
 
     const isStepOptional = (step) => {
         return step === 1;
@@ -92,7 +106,7 @@ export default function HorizontalLinearStepper() {
             newSkipped = new Set(newSkipped.values());
             newSkipped.delete(activeStep);
         }
-
+        
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setSkipped(newSkipped);
     };
@@ -140,7 +154,7 @@ export default function HorizontalLinearStepper() {
                 })}
             </Stepper>
             <div>
-                {activeStep === steps.length ? (
+                {activeStep === steps.length ? ((
                     <div>
                         <Typography className={classes.instructions}>
                             Link criado com Sucesso
@@ -149,9 +163,9 @@ export default function HorizontalLinearStepper() {
                             Criar outro link
                         </Button>
                     </div>
-                ) : (
+                ),shortenLink) : (
                     <div>
-                        <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+                        <Typography className={classes.instructions}>{getStepContent(activeStep, setLink, setSlug)}</Typography>
                         <div>
                             <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                                 Voltar
