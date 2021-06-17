@@ -90,6 +90,7 @@ export default function HorizontalLinearStepper() {
                     adbitAcessToken: localStorage.getItem('token'),
                 }
             });
+        handleNext()
     };
 
     const isStepOptional = (step) => {
@@ -154,7 +155,7 @@ export default function HorizontalLinearStepper() {
                 })}
             </Stepper>
             <div>
-                {activeStep === steps.length ? ((
+                {activeStep === steps.length ? (
                     <div>
                         <Typography className={classes.instructions}>
                             Link criado com Sucesso
@@ -163,7 +164,7 @@ export default function HorizontalLinearStepper() {
                             Criar outro link
                         </Button>
                     </div>
-                ),shortenLink) : (
+                    ) : (
                     <div>
                         <Typography className={classes.instructions}>{getStepContent(activeStep, setLink, setSlug)}</Typography>
                         <div>
@@ -184,7 +185,7 @@ export default function HorizontalLinearStepper() {
                             <Button
                                 variant="contained"
                                 color="primary"
-                                onClick={handleNext}
+                                onClick={activeStep === steps.length - 1? shortenLink : handleNext}
                                 className={classes.button}
                             >
                                 {activeStep === steps.length - 1 ? 'Finalizar' : 'Próximo'}
