@@ -22,11 +22,23 @@ export default function CollapsibleTable() {
             }
         }).then((response) => {
             console.log(response);
-            setItems(response.data.reverse())
+            setItems(response.data)
         })}
     useEffect(() => {
         listLinks()
       });
+
+    const orderByDateAsc = () => {
+        items.map((item, index) => (
+            <LinkItem key={index} id ={index+1} slug={item.slug} data={item.data}></LinkItem>
+            ))
+    }
+
+    const orderByDateDsc = () => {
+        items.reverse().map((item, index) => (
+            <LinkItem key={index} id ={index+1} slug={item.slug} data={item.data}></LinkItem>
+            ))
+    }
 
     return (
         <Layout>
@@ -43,9 +55,7 @@ export default function CollapsibleTable() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {items.map((item, index) => (
-                        <LinkItem key={index} id ={index+1} slug={item.slug} data={item.data}></LinkItem>
-                        ))}
+                        {orderByDateAsc}
                     </TableBody>
                 </Table>
             </TableContainer>
